@@ -1,0 +1,8 @@
+# Ignore macOS system files
+.DS_Store
+
+# Local dev / harness
+.cursor/
+memory-bank/
+references/
+
