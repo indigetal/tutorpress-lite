@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Main TutorPress Lite class.
  *
- * Feature loading is implemented in Step 3.
+ * Feature loading is expanded in Step 3.
  */
 class TutorPress_Lite_Main {
 
@@ -66,8 +66,32 @@ class TutorPress_Lite_Main {
 	private function __construct( $args = array() ) {
 		$this->version = isset( $args['version'] ) ? $args['version'] : TUTORPRESS_LITE_VERSION;
 
-		$main_file       = isset( $args['main_file'] ) ? $args['main_file'] : TUTORPRESS_LITE_FILE;
+		$main_file         = isset( $args['main_file'] ) ? $args['main_file'] : TUTORPRESS_LITE_FILE;
 		$this->plugin_url  = plugin_dir_url( $main_file );
 		$this->plugin_path = trailingslashit( dirname( $main_file ) );
+
+		$this->init();
+	}
+
+	/**
+	 * Initialize the plugin.
+	 */
+	private function init() {
+		$this->check_dependencies();
+	}
+
+	/**
+	 * Check plugin dependencies.
+	 */
+	private function check_dependencies() {
+		require_once $this->plugin_path . 'includes/class-tutorpress-lite-dependency-checker.php';
+
+		$errors = TutorPress_Lite_Dependency_Checker::check_immediate_requirements();
+		if ( ! empty( $errors ) ) {
+			TutorPress_Lite_Dependency_Checker::display_errors( $errors );
+			return;
+		}
+
+		TutorPress_Lite_Dependency_Checker::schedule_deferred_checks();
 	}
 }
