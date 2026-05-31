@@ -11,10 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Main TutorPress Lite class.
- *
- * Feature loading is expanded in Step 3.
  */
 class TutorPress_Lite_Main {
+
+	/**
+	 * User meta key for dismissed dual-plugin notice.
+	 */
+	const DISMISS_DUAL_PLUGIN_META_KEY = 'tutorpress_lite_dismiss_dual_plugin_notice';
 
 	/**
 	 * Singleton instance.
@@ -78,6 +81,8 @@ class TutorPress_Lite_Main {
 	 */
 	private function init() {
 		$this->check_dependencies();
+		$this->register_dual_plugin_notice();
+		$this->load_core_components();
 	}
 
 	/**
@@ -93,5 +98,136 @@ class TutorPress_Lite_Main {
 		}
 
 		TutorPress_Lite_Dependency_Checker::schedule_deferred_checks();
+	}
+
+	/**
+	 * Whether full TutorPress is loaded (defines TUTORPRESS_VERSION).
+	 *
+	 * @return bool
+	 */
+	private function is_full_tutorpress_active() {
+		return defined( 'TUTORPRESS_VERSION' );
+	}
+
+	/**
+	 * Register dual-plugin admin notice hooks.
+	 *
+	 * Hooks are always registered; full TutorPress is detected at render time
+	 * because Lite may load before tutorpress.php defines TUTORPRESS_VERSION.
+	 */
+	private function register_dual_plugin_notice() {
+		add_action( 'admin_notices', array( $this, 'render_dual_plugin_notice' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_dual_plugin_dismiss_script' ) );
+		add_action( 'wp_ajax_tutorpress_lite_dismiss_dual_plugin_notice', array( $this, 'ajax_dismiss_dual_plugin_notice' ) );
+	}
+
+	/**
+	 * Render dismissible notice when full TutorPress and Lite are both active.
+	 */
+	public function render_dual_plugin_notice() {
+		if ( ! $this->is_full_tutorpress_active() ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		if ( get_user_meta( get_current_user_id(), self::DISMISS_DUAL_PLUGIN_META_KEY, true ) ) {
+			return;
+		}
+
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( $screen && ! in_array( $screen->id, array( 'dashboard', 'plugins', 'toplevel_page_tutorpress-settings' ), true ) ) {
+			return;
+		}
+
+		$lite_plugin = 'tutorpress-lite/tutorpress-lite.php';
+		$deactivate_url = wp_nonce_url(
+			admin_url( 'plugins.php?action=deactivate&plugin=' . rawurlencode( $lite_plugin ) ),
+			'deactivate-plugin_' . $lite_plugin
+		);
+
+		$deactivate_link = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( $deactivate_url ),
+			esc_html__( 'TutorPress Lite', 'tutorpress-lite' )
+		);
+
+		$message = sprintf(
+			/* translators: %s: deactivate link for TutorPress Lite */
+			__(
+				'TutorPress and TutorPress Lite are both active. Deactivate %s to avoid conflicts. The full version of TutorPress includes all Lite features but requires an active license.',
+				'tutorpress-lite'
+			),
+			$deactivate_link
+		);
+
+		printf(
+			'<div class="notice notice-warning is-dismissible tutorpress-lite-dual-plugin-notice"><p>%s</p></div>',
+			wp_kses(
+				$message,
+				array(
+					'a' => array(
+						'href' => array(),
+					),
+				)
+			)
+		);
+	}
+
+	/**
+	 * Enqueue script to persist dismissal of the dual-plugin notice.
+	 *
+	 * @param string $hook_suffix Current admin page hook suffix.
+	 */
+	public function enqueue_dual_plugin_dismiss_script( $hook_suffix ) {
+		unset( $hook_suffix );
+
+		if ( ! $this->is_full_tutorpress_active() ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		if ( get_user_meta( get_current_user_id(), self::DISMISS_DUAL_PLUGIN_META_KEY, true ) ) {
+			return;
+		}
+
+		wp_enqueue_script( 'jquery' );
+
+		$inline = sprintf(
+			'jQuery(function($){$(document).on("click",".tutorpress-lite-dual-plugin-notice .notice-dismiss",function(){$.post(ajaxurl,{action:"tutorpress_lite_dismiss_dual_plugin_notice",nonce:%s});});});',
+			wp_json_encode( wp_create_nonce( 'tutorpress_lite_dismiss_dual_plugin_notice' ) )
+		);
+
+		wp_add_inline_script( 'jquery', $inline );
+	}
+
+	/**
+	 * AJAX handler: persist dual-plugin notice dismissal per user.
+	 */
+	public function ajax_dismiss_dual_plugin_notice() {
+		check_ajax_referer( 'tutorpress_lite_dismiss_dual_plugin_notice', 'nonce' );
+
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			wp_send_json_error( null, 403 );
+		}
+
+		update_user_meta( get_current_user_id(), self::DISMISS_DUAL_PLUGIN_META_KEY, '1' );
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Load and initialize feature classes from this orchestrator only.
+	 *
+	 * Feature classes must not call ::init() at file bottom (Step 4+ register here).
+	 */
+	private function load_core_components() {
+		// Step 4: TutorPress_Lite_Settings::init();
+		// Step 7–13: tutorlms / assets classes via ::init() from here.
 	}
 }
