@@ -227,7 +227,9 @@ class TutorPress_Lite_Main {
 	 * Feature classes must not call ::init() at file bottom (Step 4+ register here).
 	 */
 	private function load_core_components() {
-		// Step 4: TutorPress_Lite_Settings::init();
+		require_once $this->plugin_path . 'includes/class-tutorpress-lite-settings.php';
+		TutorPress_Lite_Settings::init();
+
 		// Step 7–13: tutorlms / assets classes via ::init() from here.
 	}
 }
