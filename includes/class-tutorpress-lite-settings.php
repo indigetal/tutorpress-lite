@@ -152,7 +152,7 @@ class TutorPress_Lite_Settings {
 	}
 
 	/**
-	 * Render a toggle field (minimal markup; Step 5 adds switch styling and escaped helpers).
+	 * Render a toggle field with switch styling.
 	 *
 	 * @param array{key: string, helper?: string} $args Field arguments.
 	 */
@@ -161,29 +161,43 @@ class TutorPress_Lite_Settings {
 		$key  = $args['key'];
 		$val  = isset( $opts[ $key ] ) ? $opts[ $key ] : '0';
 
+		echo '<label class="tutorpress-switch">';
 		printf(
-			'<label><input type="checkbox" name="tutorpress_settings[%1$s]" value="1" %2$s /></label>',
+			'<input type="checkbox" name="tutorpress_settings[%1$s]" value="1" %2$s />',
 			esc_attr( $key ),
 			checked( '1', $val, false )
 		);
+		echo '<span class="tutorpress-slider"></span></label>';
 
 		if ( ! empty( $args['helper'] ) ) {
 			printf(
-				'<p class="description">%s</p>',
+				'<p class="description" style="max-width: 600px; margin-top: 0;">%s</p>',
 				esc_html( $args['helper'] )
 			);
 		}
 	}
 
 	/**
-	 * Render the settings page (minimal form; Step 5 adds dashboard section CSS and switch styles).
+	 * Render the settings page.
 	 */
 	public static function render_settings_page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 		?>
-		<div class="wrap">
+		<div class="wrap tutorpress-lite-settings-wrap">
+			<style>
+				/* Visual frame for the Editor & Dashboard Redirects section */
+				#tutorpress_dashboard_section + table.form-table {
+					border: 1px solid #e5e7eb;
+					padding: 12px;
+					border-radius: 6px;
+					background: #fff;
+				}
+				#tutorpress_dashboard_section {
+					margin-bottom: 8px;
+				}
+			</style>
 			<h1><?php echo esc_html__( 'TutorPress Lite for Tutor LMS', 'tutorpress-lite' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
@@ -192,6 +206,45 @@ class TutorPress_Lite_Settings {
 				submit_button();
 				?>
 			</form>
+			<style>
+				.tutorpress-switch {
+					position: relative;
+					display: inline-block;
+					width: 34px;
+					height: 20px;
+				}
+				.tutorpress-switch input {
+					display: none;
+				}
+				.tutorpress-slider {
+					position: absolute;
+					cursor: pointer;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: #ccc;
+					transition: 0.4s;
+					border-radius: 20px;
+				}
+				.tutorpress-slider:before {
+					position: absolute;
+					content: "";
+					height: 14px;
+					width: 14px;
+					left: 3px;
+					bottom: 3px;
+					background-color: #fff;
+					transition: 0.4s;
+					border-radius: 50%;
+				}
+				input:checked + .tutorpress-slider {
+					background-color: #2196f3;
+				}
+				input:checked + .tutorpress-slider:before {
+					transform: translateX(14px);
+				}
+			</style>
 		</div>
 		<?php
 	}
