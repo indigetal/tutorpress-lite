@@ -94,11 +94,11 @@ class TutorPress_Lite_Admin {
 			return;
 		}
 
-		if ( empty( $_GET['post'] ) ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Core post editor screen; post ID validated below.
+		$post_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0;
+		if ( ! $post_id ) {
 			return;
 		}
-
-		$post_id = (int) $_GET['post'];
 		$post    = get_post( $post_id );
 
 		if ( ! $post ) {
@@ -133,7 +133,7 @@ class TutorPress_Lite_Admin {
 			}
 		}
 
-		wp_die( esc_html__( 'Permission Denied', 'tutor' ) );
+		wp_die( esc_html__( 'Permission Denied', 'tutorpress-lite' ) );
 	}
 
 	/**
@@ -159,6 +159,7 @@ class TutorPress_Lite_Admin {
 	 * @param string $hook_suffix Current admin page hook suffix.
 	 */
 	public static function enqueue_admin_overrides_on_courses_page( $hook_suffix ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin screen routing only.
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		$is_tutor_page = ( 'tutor_page_tutor' === $hook_suffix || 'tutor' === $page );
 

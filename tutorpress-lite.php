@@ -6,6 +6,7 @@
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
+ * Requires Plugins:  tutor
  * Author:            Indigetal WebCraft
  * Author URI:        https://indigetal.com/tutorpress
  * License:           GPL-2.0-or-later
