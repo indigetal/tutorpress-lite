@@ -15,11 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 class TutorPress_Lite_Admin {
 
 	/**
-	 * Register admin hooks (Step 8: lessons menu; Step 9+ adds co-instructor and toggles).
+	 * Register admin hooks (Step 8–9: menu + co-instructor; Step 10+: toggles).
 	 */
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_lessons_menu_item' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'reorder_tutor_submenus' ), 100 );
+		add_action( 'init', array( __CLASS__, 'conditionally_hide_builder_button' ) );
 		add_action( 'load-post.php', array( __CLASS__, 'fix_tutor_access_check' ), 5 );
 	}
 
@@ -128,5 +129,22 @@ class TutorPress_Lite_Admin {
 		}
 
 		wp_die( esc_html__( 'Permission Denied', 'tutor' ) );
+	}
+
+	/**
+	 * Conditionally hides the "Edit with Course Builder" button via CSS.
+	 */
+	public static function conditionally_hide_builder_button() {
+		$remove_button = tutorpress_get_setting( 'remove_frontend_builder_button', '0' );
+		if ( $remove_button && '1' === $remove_button ) {
+			add_action( 'admin_head', array( __CLASS__, 'hide_builder_button_css' ) );
+		}
+	}
+
+	/**
+	 * Injects CSS to hide the frontend builder button from the Gutenberg editor header.
+	 */
+	public static function hide_builder_button_css() {
+		echo '<style>#tutor-frontend-builder-trigger { display: none !important; }</style>';
 	}
 }
