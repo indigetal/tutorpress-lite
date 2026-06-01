@@ -231,6 +231,9 @@ class TutorPress_Lite_Main {
 		require_once $this->plugin_path . 'includes/class-tutorpress-lite-settings.php';
 		TutorPress_Lite_Settings::init();
 
-		// Step 7–13: tutorlms / assets classes via ::init() from here.
+		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-admin.php';
+		TutorPress_Lite_Admin::init();
+
+		// Step 9–13: additional admin / dashboard / assets via ::init() from here.
 	}
 }
