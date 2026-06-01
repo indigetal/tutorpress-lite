@@ -231,9 +231,13 @@ class TutorPress_Lite_Main {
 		require_once $this->plugin_path . 'includes/class-tutorpress-lite-settings.php';
 		TutorPress_Lite_Settings::init();
 
+		require_once $this->plugin_path . 'includes/shared/class-tutorpress-lite-permissions.php';
+		require_once $this->plugin_path . 'includes/shared/class-tutorpress-lite-collaborative-editing.php';
+		TutorPress_Lite_Collaborative_Editing::get_instance();
+
 		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-admin.php';
 		TutorPress_Lite_Admin::init();
 
-		// Step 9–13: additional admin / dashboard / assets via ::init() from here.
+		// Step 10–13: additional admin / dashboard / assets via ::init() from here.
 	}
 }
