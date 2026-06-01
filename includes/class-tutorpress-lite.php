@@ -238,6 +238,12 @@ class TutorPress_Lite_Main {
 		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-admin.php';
 		TutorPress_Lite_Admin::init();
 
-		// Step 10–13: additional admin / dashboard / assets via ::init() from here.
+		require_once $this->plugin_path . 'includes/class-tutorpress-lite-assets.php';
+		TutorPress_Lite_Assets::init();
+
+		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-dashboard.php';
+		TutorPress_Lite_Dashboard::init();
+
+		// Step 13: sidebar tabs assets via TutorPress_Lite_Assets extension.
 	}
 }
