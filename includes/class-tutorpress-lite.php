@@ -244,6 +244,7 @@ class TutorPress_Lite_Main {
 		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-dashboard.php';
 		TutorPress_Lite_Dashboard::init();
 
-		// Step 13: sidebar tabs assets via TutorPress_Lite_Assets extension.
+		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-sidebar-tabs.php';
+		TutorPress_Lite_Sidebar_Tabs::init();
 	}
 }
