@@ -25,6 +25,22 @@ class TutorPress_Lite_Dependency_Checker {
 	const MINIMUM_WP_VERSION = '6.0';
 
 	/**
+	 * Admin screen IDs where scoped plugin notices may appear (not site-wide).
+	 *
+	 * TutorPress Lite settings: add_submenu_page( 'tutor', …, 'tutorpress-settings' )
+	 * → screen id `tutor_page_tutorpress-settings` (not toplevel_page_*).
+	 *
+	 * @return string[]
+	 */
+	public static function get_scoped_admin_notice_screen_ids() {
+		return array(
+			'dashboard',
+			'plugins',
+			'tutor_page_tutorpress-settings',
+		);
+	}
+
+	/**
 	 * Check immediate requirements (PHP/WordPress versions).
 	 *
 	 * @return string[] Error messages; empty when all requirements are met.
@@ -135,10 +151,9 @@ class TutorPress_Lite_Dependency_Checker {
 			return;
 		}
 
-		$screen        = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		$valid_screens = array( 'dashboard', 'plugins', 'toplevel_page_tutorpress-settings' );
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 
-		if ( $screen && ! in_array( $screen->id, $valid_screens, true ) ) {
+		if ( $screen && ! in_array( $screen->id, self::get_scoped_admin_notice_screen_ids(), true ) ) {
 			return;
 		}
 

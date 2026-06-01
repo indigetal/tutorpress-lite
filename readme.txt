@@ -40,8 +40,8 @@ Lite is a complete product for its stated scope: native WordPress/Gutenberg cour
 = Upgrade path =
 
 1. Configure toggles in **Tutor LMS → TutorPress Lite**.
-2. Install and activate **full TutorPress** when you need the Course Builder.
-3. Deactivate TutorPress Lite (settings remain in `tutorpress_settings`).
+2. Install and activate the **full version of TutorPress** when you need the Course Builder (from Indigetal WebCraft, not WordPress.org).
+3. Deactivate TutorPress Lite (your `tutorpress_settings` values are kept).
 
 Do not run Lite and full TutorPress together; Lite shows a dismissible admin notice if both are active.
 
@@ -56,7 +56,7 @@ Do not run Lite and full TutorPress together; Lite shows a dismissible admin not
 
 = Is this the same as full TutorPress? =
 
-No. Lite shares settings storage and several UX improvements but does not include the premium Gutenberg Course Builder or template hierarchy tools.
+No. TutorPress Lite shares the same settings and UX improvements as the full version. Full TutorPress adds the Gutenberg Course Builder and template hierarchy tools that are not included in Lite.
 
 = Will my settings survive if I upgrade to full TutorPress? =
 

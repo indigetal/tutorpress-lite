@@ -82,7 +82,44 @@ class TutorPress_Lite_Main {
 	private function init() {
 		$this->check_dependencies();
 		$this->register_dual_plugin_notice();
+		$this->register_upgrade_messaging();
 		$this->load_core_components();
+	}
+
+	/**
+	 * Register WordPress.org-compliant upgrade surfaces (see TUTORPRESS_FULL_PRODUCT_URL).
+	 */
+	private function register_upgrade_messaging() {
+		add_filter( 'plugin_row_meta', array( $this, 'filter_plugin_row_meta' ), 10, 2 );
+	}
+
+	/**
+	 * Append a single link to full TutorPress on the Plugins list (plugin_row_meta only).
+	 *
+	 * @param string[] $plugin_meta Plugin row meta links.
+	 * @param string   $plugin_file Plugin basename.
+	 * @return string[]
+	 */
+	public function filter_plugin_row_meta( $plugin_meta, $plugin_file ) {
+		if ( plugin_basename( TUTORPRESS_LITE_FILE ) !== $plugin_file ) {
+			return $plugin_meta;
+		}
+
+		if ( defined( 'TUTORPRESS_VERSION' ) ) {
+			return $plugin_meta;
+		}
+
+		if ( ! defined( 'TUTORPRESS_FULL_PRODUCT_URL' ) ) {
+			return $plugin_meta;
+		}
+
+		$plugin_meta[] = sprintf(
+			'<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
+			esc_url( TUTORPRESS_FULL_PRODUCT_URL ),
+			esc_html__( 'Full TutorPress', 'tutorpress-lite' )
+		);
+
+		return $plugin_meta;
 	}
 
 	/**
@@ -138,7 +175,7 @@ class TutorPress_Lite_Main {
 		}
 
 		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-		if ( $screen && ! in_array( $screen->id, array( 'dashboard', 'plugins', 'toplevel_page_tutorpress-settings' ), true ) ) {
+		if ( $screen && ! in_array( $screen->id, TutorPress_Lite_Dependency_Checker::get_scoped_admin_notice_screen_ids(), true ) ) {
 			return;
 		}
 

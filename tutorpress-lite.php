@@ -33,6 +33,13 @@ define( 'TUTORPRESS_LITE_URL', plugin_dir_url( __FILE__ ) );
 define( 'TUTORPRESS_LITE_FILE', __FILE__ );
 
 /**
+ * Full TutorPress product page (paid plugin; not on WordPress.org).
+ */
+if ( ! defined( 'TUTORPRESS_FULL_PRODUCT_URL' ) ) {
+	define( 'TUTORPRESS_FULL_PRODUCT_URL', 'https://indigetal.com/tutorpress' );
+}
+
+/**
  * Plugin activation callback.
  */
 function tutorpress_lite_activate() {

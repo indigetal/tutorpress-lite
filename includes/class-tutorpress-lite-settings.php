@@ -197,6 +197,24 @@ class TutorPress_Lite_Settings {
 				#tutorpress_dashboard_section {
 					margin-bottom: 8px;
 				}
+				/* Do not use class "notice" — wp-admin moves .notice to the top of .wrap */
+				.tutorpress-lite-full-about {
+					max-width: 800px;
+					margin: 16px 0 0;
+					padding: 12px;
+					border: 1px solid #c3c4c7;
+					border-left-width: 4px;
+					border-left-color: #72aee6;
+					background: #fff;
+					box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+				}
+				.tutorpress-lite-full-about h2 {
+					margin-top: 0;
+					font-size: 1.1em;
+				}
+				.tutorpress-lite-full-about p:last-child {
+					margin-bottom: 0;
+				}
 			</style>
 			<h1><?php echo esc_html__( 'TutorPress Lite for Tutor LMS', 'tutorpress-lite' ); ?></h1>
 			<form method="post" action="options.php">
@@ -204,6 +222,7 @@ class TutorPress_Lite_Settings {
 				settings_fields( 'tutorpress_settings_group' );
 				do_settings_sections( 'tutorpress-settings' );
 				submit_button();
+				self::render_full_tutorpress_about();
 				?>
 			</form>
 			<style>
@@ -245,6 +264,56 @@ class TutorPress_Lite_Settings {
 					transform: translateX(14px);
 				}
 			</style>
+		</div>
+		<?php
+	}
+
+	/**
+	 * About box for full TutorPress (settings page only; see TUTORPRESS_FULL_PRODUCT_URL).
+	 *
+	 * Hidden when full TutorPress is active.
+	 */
+	public static function render_full_tutorpress_about() {
+		if ( defined( 'TUTORPRESS_VERSION' ) ) {
+			return;
+		}
+
+		if ( ! defined( 'TUTORPRESS_FULL_PRODUCT_URL' ) ) {
+			return;
+		}
+
+		$product_url = TUTORPRESS_FULL_PRODUCT_URL;
+		?>
+		<div class="tutorpress-lite-full-about">
+			<h2>
+				<?php
+				esc_html_e(
+					'Get the full version of TutorPress: a Gutenberg Course Builder for Tutor LMS',
+					'tutorpress-lite'
+				);
+				?>
+			</h2>
+			<p>
+				<?php
+				esc_html_e(
+					'TutorPress Lite shares the same settings and UX improvements as the full version. The full version of TutorPress adds a Gutenberg-native Course Builder in full parity with Tutor LMS\'s frontend course builder, as well as deeper compatibility with the wider WordPress ecosystem.',
+					'tutorpress-lite'
+				);
+				?>
+			</p>
+			<p>
+				<?php
+				esc_html_e(
+					'The full version of TutorPress is available with a 14-day free trial from Indigetal WebCraft (the trial applies to the paid plugin, not to this free Lite release). After you activate full TutorPress, deactivate TutorPress Lite.',
+					'tutorpress-lite'
+				);
+				?>
+			</p>
+			<p>
+				<a href="<?php echo esc_url( $product_url ); ?>" target="_blank" rel="noopener noreferrer">
+					<?php esc_html_e( 'Learn more about TutorPress', 'tutorpress-lite' ); ?>
+				</a>
+			</p>
 		</div>
 		<?php
 	}
