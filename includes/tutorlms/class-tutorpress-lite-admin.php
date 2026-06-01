@@ -22,6 +22,11 @@ class TutorPress_Lite_Admin {
 		add_action( 'admin_menu', array( __CLASS__, 'reorder_tutor_submenus' ), 100 );
 		add_action( 'init', array( __CLASS__, 'conditionally_hide_builder_button' ) );
 		add_action( 'load-post.php', array( __CLASS__, 'fix_tutor_access_check' ), 5 );
+
+		if ( tutorpress_get_setting( 'enable_admin_redirects', false ) ) {
+			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_overrides_on_courses_page' ) );
+			add_action( 'tutor_admin_after_course_list_action', array( __CLASS__, 'enqueue_admin_overrides' ) );
+		}
 	}
 
 	/**
@@ -146,5 +151,52 @@ class TutorPress_Lite_Admin {
 	 */
 	public static function hide_builder_button_css() {
 		echo '<style>#tutor-frontend-builder-trigger { display: none !important; }</style>';
+	}
+
+	/**
+	 * Enqueue admin redirect script on the Tutor LMS courses admin page.
+	 *
+	 * @param string $hook_suffix Current admin page hook suffix.
+	 */
+	public static function enqueue_admin_overrides_on_courses_page( $hook_suffix ) {
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+		$is_tutor_page = ( 'tutor_page_tutor' === $hook_suffix || 'tutor' === $page );
+
+		if ( ! $is_tutor_page ) {
+			return;
+		}
+
+		self::enqueue_admin_overrides();
+	}
+
+	/**
+	 * Enqueue admin redirect overrides script.
+	 */
+	public static function enqueue_admin_overrides() {
+		if ( wp_script_is( 'tutorpress-lite-admin-redirects', 'enqueued' ) ) {
+			return;
+		}
+
+		$script_path = TUTORPRESS_LITE_PATH . 'assets/js/admin-redirects.js';
+		if ( ! file_exists( $script_path ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'tutorpress-lite-admin-redirects',
+			TUTORPRESS_LITE_URL . 'assets/js/admin-redirects.js',
+			array(),
+			(string) filemtime( $script_path ),
+			true
+		);
+
+		wp_localize_script(
+			'tutorpress-lite-admin-redirects',
+			'TutorPressData',
+			array(
+				'enableAdminRedirects' => tutorpress_get_setting( 'enable_admin_redirects', false ),
+				'adminUrl'             => admin_url(),
+			)
+		);
 	}
 }
