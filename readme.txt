@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
 Requires Plugins: tutor
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. Lite corr
 
 == Changelog ==
 
+= 1.0.1 =
+* Preserve lesson featured images and exercise attachments during Gutenberg/backend saves when those fields are omitted
+
 = 1.0.0 =
 * Initial WordPress.org release
 * Shared `tutorpress_settings` with five feature toggles
@@ -87,6 +90,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. Lite corr
 * Assignment CPT admin/REST support for co-instructors
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Fixes Gutenberg lesson saves accidentally removing Tutor LMS featured images and exercise attachments.
 
 = 1.0.0 =
 Initial public release of TutorPress Lite for Tutor LMS.

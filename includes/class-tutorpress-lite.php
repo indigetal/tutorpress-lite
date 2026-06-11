@@ -275,6 +275,9 @@ class TutorPress_Lite_Main {
 		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-admin.php';
 		TutorPress_Lite_Admin::init();
 
+		require_once $this->plugin_path . 'includes/tutorlms/class-tutorpress-lite-lesson-compatibility.php';
+		TutorPress_Lite_Lesson_Compatibility::init();
+
 		require_once $this->plugin_path . 'includes/class-tutorpress-lite-assets.php';
 		TutorPress_Lite_Assets::init();
 
