@@ -1,0 +1,20 @@
+{
+  "name": "tutorpress-lite",
+  "version": "1.0.1",
+  "description": "TutorPress Lite for Tutor LMS improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing.",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "keywords": [
+    "wordpress",
+    "tutor-lms",
+    "gutenberg"
+  ],
+  "scripts": {
+    "clean": "rm -rf tutorpress-lite-build tutorpress-lite.zip",
+    "make-build": "npm run clean && mkdir -p tutorpress-lite-build/tutorpress-lite && rsync -av --exclude-from=.distignore . tutorpress-lite-build/tutorpress-lite/",
+    "package": "npm run make-build && cd tutorpress-lite-build && COPYFILE_DISABLE=1 zip -r ../tutorpress-lite.zip tutorpress-lite -x '*/.DS_Store' -x '*/._*' -x '__MACOSX/*' && cd .. && rm -rf tutorpress-lite-build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

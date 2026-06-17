@@ -330,7 +330,9 @@ class TutorPress_Lite_Lesson_Compatibility {
 	 * @return bool
 	 */
 	private static function php_request_has_thumbnail_id() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended -- Key presence only; core/Tutor verify nonces on save.
 		return array_key_exists( 'thumbnail_id', $_POST ) || array_key_exists( 'thumbnail_id', $_REQUEST );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -339,10 +341,12 @@ class TutorPress_Lite_Lesson_Compatibility {
 	 * @return bool
 	 */
 	private static function php_request_has_core_featured_image_field() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended -- Key presence only; core/Tutor verify nonces on save.
 		return array_key_exists( 'featured_media', $_POST )
 			|| array_key_exists( 'featured_media', $_REQUEST )
 			|| array_key_exists( '_thumbnail_id', $_POST )
 			|| array_key_exists( '_thumbnail_id', $_REQUEST );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -351,10 +355,12 @@ class TutorPress_Lite_Lesson_Compatibility {
 	 * @return bool
 	 */
 	private static function php_request_has_tutor_attachments_field() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended -- Key presence only; core/Tutor verify nonces on save.
 		return array_key_exists( 'tutor_attachments', $_POST )
 			|| array_key_exists( 'tutor_attachments', $_REQUEST )
 			|| array_key_exists( '_tutor_attachments', $_POST )
 			|| array_key_exists( '_tutor_attachments', $_REQUEST );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
@@ -363,11 +369,13 @@ class TutorPress_Lite_Lesson_Compatibility {
 	 * @return bool
 	 */
 	private static function is_frontend_builder_lesson_save() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended -- Detecting Tutor frontend-builder request shape only.
 		if ( ! isset( $_POST['action'] ) ) {
 			return false;
 		}
 
 		$action = sanitize_text_field( wp_unslash( $_POST['action'] ) );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 
 		return 'tutor_save_lesson' === $action;
 	}
