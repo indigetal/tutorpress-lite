@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       TutorPress Lite for Tutor LMS
- * Plugin URI:        https://wordpress.org/plugins/tutorpress-lite/
+ * Plugin URI:        https://wordpress.org/plugins/tutorpress-lite-for-tutor-lms/
  * Description:       Improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing—without the premium Course Builder.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Requires Plugins:  tutor
@@ -11,7 +11,7 @@
  * Author URI:        https://indigetal.com/tutorpress
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       tutorpress-lite
+ * Text Domain:       tutorpress-lite-for-tutor-lms
  * Domain Path:       /languages
  *
  * @package TutorPress_Lite

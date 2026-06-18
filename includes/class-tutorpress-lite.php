@@ -116,7 +116,7 @@ class TutorPress_Lite_Main {
 		$plugin_meta[] = sprintf(
 			'<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
 			esc_url( TUTORPRESS_FULL_PRODUCT_URL ),
-			esc_html__( 'Full TutorPress', 'tutorpress-lite' )
+			esc_html__( 'Full TutorPress', 'tutorpress-lite-for-tutor-lms' )
 		);
 
 		return $plugin_meta;
@@ -179,7 +179,7 @@ class TutorPress_Lite_Main {
 			return;
 		}
 
-		$lite_plugin = 'tutorpress-lite/tutorpress-lite.php';
+		$lite_plugin = plugin_basename( TUTORPRESS_LITE_FILE );
 		$deactivate_url = wp_nonce_url(
 			admin_url( 'plugins.php?action=deactivate&plugin=' . rawurlencode( $lite_plugin ) ),
 			'deactivate-plugin_' . $lite_plugin
@@ -188,14 +188,14 @@ class TutorPress_Lite_Main {
 		$deactivate_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $deactivate_url ),
-			esc_html__( 'TutorPress Lite', 'tutorpress-lite' )
+			esc_html__( 'TutorPress Lite', 'tutorpress-lite-for-tutor-lms' )
 		);
 
 		$message = sprintf(
 			/* translators: %s: deactivate link for TutorPress Lite */
 			__(
 				'TutorPress and TutorPress Lite are both active. Deactivate %s to avoid conflicts. The full version of TutorPress includes all Lite features but requires an active license.',
-				'tutorpress-lite'
+				'tutorpress-lite-for-tutor-lms'
 			),
 			$deactivate_link
 		);

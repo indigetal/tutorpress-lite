@@ -5,7 +5,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
 Requires Plugins: tutor
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,9 +79,13 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. Lite corr
 
 == Changelog ==
 
+= 1.0.3 =
+* WordPress.org submission package update
+
 = 1.0.2 =
 * WordPress.org review fixes: enqueue admin CSS, sanitize lesson sidebar HTML output, and add release packaging workflow
 * Settings page copy updates for plugin directory guidelines
+* Text domain updated to `tutorpress-lite-for-tutor-lms` to match the WordPress.org plugin slug
 
 = 1.0.1 =
 * Preserve lesson featured images and exercise attachments during Gutenberg/backend saves when those fields are omitted
@@ -94,6 +98,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. Lite corr
 * Assignment CPT admin/REST support for co-instructors
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Updated submission package for WordPress.org review.
 
 = 1.0.2 =
 WordPress.org compliance and packaging improvements for the 1.0.2 release.
