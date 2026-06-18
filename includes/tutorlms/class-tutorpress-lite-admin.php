@@ -142,15 +142,31 @@ class TutorPress_Lite_Admin {
 	public static function conditionally_hide_builder_button() {
 		$remove_button = tutorpress_get_setting( 'remove_frontend_builder_button', '0' );
 		if ( $remove_button && '1' === $remove_button ) {
-			add_action( 'admin_head', array( __CLASS__, 'hide_builder_button_css' ) );
+			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_builder_button_styles' ) );
 		}
 	}
 
 	/**
-	 * Injects CSS to hide the frontend builder button from the Gutenberg editor header.
+	 * Enqueue CSS to hide the frontend builder button from the Gutenberg editor header.
+	 *
+	 * @param string $hook_suffix Current admin page hook suffix.
 	 */
-	public static function hide_builder_button_css() {
-		echo '<style>#tutor-frontend-builder-trigger { display: none !important; }</style>';
+	public static function enqueue_builder_button_styles( $hook_suffix ) {
+		if ( ! in_array( $hook_suffix, array( 'post.php', 'post-new.php' ), true ) ) {
+			return;
+		}
+
+		$style_path = TUTORPRESS_LITE_PATH . 'assets/css/admin-overrides.css';
+		if ( ! file_exists( $style_path ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'tutorpress-lite-admin-overrides',
+			TUTORPRESS_LITE_URL . 'assets/css/admin-overrides.css',
+			array(),
+			(string) filemtime( $style_path )
+		);
 	}
 
 	/**

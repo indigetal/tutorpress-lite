@@ -45,8 +45,7 @@ class TutorPress_Lite_Sidebar_Tabs {
 			</ul>
 			<div class="tutorpress-tab-content" id="course-content">
 				<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Tutor LMS sidebar HTML from filter.
-				echo $sidebar_content;
+				echo wp_kses( $sidebar_content, self::get_allowed_sidebar_html() );
 				?>
 			</div>
 			<div class="tutorpress-tab-content" id="discussion" style="display: none;">
@@ -55,6 +54,69 @@ class TutorPress_Lite_Sidebar_Tabs {
 		</div>
 		<?php
 		return ob_get_clean();
+	}
+
+	/**
+	 * Get allowed HTML for Tutor LMS sidebar markup.
+	 *
+	 * @return array<string, array<string, bool|string[]>>
+	 */
+	private static function get_allowed_sidebar_html() {
+		$allowed_html = wp_kses_allowed_html( 'post' );
+
+		$global_attributes = array(
+			'aria-*' => true,
+			'class'  => true,
+			'data-*' => true,
+			'id'     => true,
+			'role'   => true,
+			'style'  => true,
+			'title'  => true,
+		);
+
+		foreach ( $allowed_html as $tag => $attributes ) {
+			$allowed_html[ $tag ] = array_merge( $attributes, $global_attributes );
+		}
+
+		$allowed_html['button'] = array_merge(
+			$global_attributes,
+			array(
+				'disabled' => true,
+				'name'     => true,
+				'type'     => true,
+				'value'    => true,
+			)
+		);
+
+		$allowed_html['input'] = array_merge(
+			$global_attributes,
+			array(
+				'checked'     => true,
+				'disabled'    => true,
+				'name'        => true,
+				'placeholder' => true,
+				'type'        => true,
+				'value'       => true,
+			)
+		);
+
+		$allowed_html['svg'] = array_merge(
+			$global_attributes,
+			array(
+				'fill'        => true,
+				'height'      => true,
+				'viewbox'     => true,
+				'xmlns'       => true,
+				'width'       => true,
+			)
+		);
+
+		$allowed_html['path'] = array(
+			'd'    => true,
+			'fill' => true,
+		);
+
+		return $allowed_html;
 	}
 
 	/**

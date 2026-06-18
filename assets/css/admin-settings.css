@@ -1,0 +1,80 @@
+/* Visual frame for the Editor & Dashboard Redirects section */
+#tutorpress_dashboard_section + table.form-table {
+	border: 1px solid #e5e7eb;
+	padding: 12px;
+	border-radius: 6px;
+	background: #fff;
+}
+
+#tutorpress_dashboard_section {
+	margin-bottom: 8px;
+}
+
+.tutorpress-lite-setting-helper {
+	max-width: 600px;
+	margin-top: 0;
+}
+
+/* Do not use class "notice"; wp-admin moves .notice to the top of .wrap. */
+.tutorpress-lite-full-about {
+	max-width: 800px;
+	margin: 16px 0 0;
+	padding: 12px;
+	border: 1px solid #c3c4c7;
+	border-left-width: 4px;
+	border-left-color: #72aee6;
+	background: #fff;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.tutorpress-lite-full-about h2 {
+	margin-top: 0;
+	font-size: 1.1em;
+}
+
+.tutorpress-lite-full-about p:last-child {
+	margin-bottom: 0;
+}
+
+.tutorpress-switch {
+	position: relative;
+	display: inline-block;
+	width: 34px;
+	height: 20px;
+}
+
+.tutorpress-switch input {
+	display: none;
+}
+
+.tutorpress-slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: 0.4s;
+	border-radius: 20px;
+}
+
+.tutorpress-slider:before {
+	position: absolute;
+	content: "";
+	height: 14px;
+	width: 14px;
+	left: 3px;
+	bottom: 3px;
+	background-color: #fff;
+	transition: 0.4s;
+	border-radius: 50%;
+}
+
+input:checked + .tutorpress-slider {
+	background-color: #2196f3;
+}
+
+input:checked + .tutorpress-slider:before {
+	transform: translateX(14px);
+}

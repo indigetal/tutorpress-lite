@@ -1,6 +1,6 @@
 {
   "name": "tutorpress-lite",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TutorPress Lite for Tutor LMS improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing.",
   "license": "GPL-2.0-or-later",
   "private": true,

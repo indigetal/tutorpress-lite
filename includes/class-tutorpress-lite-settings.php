@@ -31,6 +31,7 @@ class TutorPress_Lite_Settings {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'add_settings_page' ), 11 );
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_styles' ) );
 	}
 
 	/**
@@ -171,10 +172,37 @@ class TutorPress_Lite_Settings {
 
 		if ( ! empty( $args['helper'] ) ) {
 			printf(
-				'<p class="description" style="max-width: 600px; margin-top: 0;">%s</p>',
+				'<p class="description tutorpress-lite-setting-helper">%s</p>',
 				esc_html( $args['helper'] )
 			);
 		}
+	}
+
+	/**
+	 * Enqueue settings page styles.
+	 *
+	 * @param string $hook_suffix Current admin page hook suffix.
+	 */
+	public static function enqueue_admin_styles( $hook_suffix ) {
+		unset( $hook_suffix );
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Admin screen routing only.
+		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
+		if ( 'tutorpress-settings' !== $page ) {
+			return;
+		}
+
+		$style_path = TUTORPRESS_LITE_PATH . 'assets/css/admin-settings.css';
+		if ( ! file_exists( $style_path ) ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'tutorpress-lite-admin-settings',
+			TUTORPRESS_LITE_URL . 'assets/css/admin-settings.css',
+			array(),
+			(string) filemtime( $style_path )
+		);
 	}
 
 	/**
@@ -186,36 +214,6 @@ class TutorPress_Lite_Settings {
 		}
 		?>
 		<div class="wrap tutorpress-lite-settings-wrap">
-			<style>
-				/* Visual frame for the Editor & Dashboard Redirects section */
-				#tutorpress_dashboard_section + table.form-table {
-					border: 1px solid #e5e7eb;
-					padding: 12px;
-					border-radius: 6px;
-					background: #fff;
-				}
-				#tutorpress_dashboard_section {
-					margin-bottom: 8px;
-				}
-				/* Do not use class "notice" — wp-admin moves .notice to the top of .wrap */
-				.tutorpress-lite-full-about {
-					max-width: 800px;
-					margin: 16px 0 0;
-					padding: 12px;
-					border: 1px solid #c3c4c7;
-					border-left-width: 4px;
-					border-left-color: #72aee6;
-					background: #fff;
-					box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-				}
-				.tutorpress-lite-full-about h2 {
-					margin-top: 0;
-					font-size: 1.1em;
-				}
-				.tutorpress-lite-full-about p:last-child {
-					margin-bottom: 0;
-				}
-			</style>
 			<h1><?php echo esc_html__( 'TutorPress Lite for Tutor LMS', 'tutorpress-lite' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
@@ -225,45 +223,6 @@ class TutorPress_Lite_Settings {
 				self::render_full_tutorpress_about();
 				?>
 			</form>
-			<style>
-				.tutorpress-switch {
-					position: relative;
-					display: inline-block;
-					width: 34px;
-					height: 20px;
-				}
-				.tutorpress-switch input {
-					display: none;
-				}
-				.tutorpress-slider {
-					position: absolute;
-					cursor: pointer;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					background-color: #ccc;
-					transition: 0.4s;
-					border-radius: 20px;
-				}
-				.tutorpress-slider:before {
-					position: absolute;
-					content: "";
-					height: 14px;
-					width: 14px;
-					left: 3px;
-					bottom: 3px;
-					background-color: #fff;
-					transition: 0.4s;
-					border-radius: 50%;
-				}
-				input:checked + .tutorpress-slider {
-					background-color: #2196f3;
-				}
-				input:checked + .tutorpress-slider:before {
-					transform: translateX(14px);
-				}
-			</style>
 		</div>
 		<?php
 	}
@@ -288,7 +247,7 @@ class TutorPress_Lite_Settings {
 			<h2>
 				<?php
 				esc_html_e(
-					'Get the full version of TutorPress: a Gutenberg Course Builder for Tutor LMS',
+					'About TutorPress',
 					'tutorpress-lite'
 				);
 				?>
@@ -296,7 +255,7 @@ class TutorPress_Lite_Settings {
 			<p>
 				<?php
 				esc_html_e(
-					'TutorPress Lite shares the same settings and UX improvements as the full version. The full version of TutorPress adds a Gutenberg-native Course Builder in full parity with Tutor LMS\'s frontend course builder, as well as deeper compatibility with the wider WordPress ecosystem.',
+					'TutorPress Lite shares the same settings and UX improvements as the full version of TutorPress. The full version of TutorPress adds a Gutenberg-native Course Builder in full parity with Tutor LMS\'s frontend course builder, as well as deeper compatibility with the wider WordPress ecosystem.',
 					'tutorpress-lite'
 				);
 				?>
@@ -304,7 +263,7 @@ class TutorPress_Lite_Settings {
 			<p>
 				<?php
 				esc_html_e(
-					'The full version of TutorPress is available with a 14-day free trial from Indigetal WebCraft (the trial applies to the paid plugin, not to this free Lite release). After you activate full TutorPress, deactivate TutorPress Lite.',
+					'The full version of TutorPress is available from Indigetal WebCraft. After you activate the full version of TutorPress, deactivate TutorPress Lite.',
 					'tutorpress-lite'
 				);
 				?>
