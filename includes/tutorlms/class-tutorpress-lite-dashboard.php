@@ -37,12 +37,12 @@ class TutorPress_Lite_Dashboard {
 	public static function add_extra_dashboard_links( $nav_items ) {
 		$extra_links = array(
 			array(
-				'title' => __( 'Media Library', 'tutorpress-lite-for-tutor-lms' ),
+				'title' => __( 'Media Library', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				'url'   => admin_url( 'upload.php' ),
 				'icon'  => 'tutor-icon-images',
 			),
 			array(
-				'title' => __( 'Interactive Content', 'tutorpress-lite-for-tutor-lms' ),
+				'title' => __( 'Interactive Content', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				'url'   => admin_url( 'admin.php?page=h5p' ),
 				'icon'  => 'tutor-icon-puzzle',
 			),

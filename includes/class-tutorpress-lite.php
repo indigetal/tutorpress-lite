@@ -116,7 +116,7 @@ class TutorPress_Lite_Main {
 		$plugin_meta[] = sprintf(
 			'<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
 			esc_url( TUTORPRESS_FULL_PRODUCT_URL ),
-			esc_html__( 'Full TutorPress', 'tutorpress-lite-for-tutor-lms' )
+			esc_html__( 'Full TutorPress', 'indigetal-course-workflow-enhancements-for-tutor-lms' )
 		);
 
 		return $plugin_meta;
@@ -188,14 +188,14 @@ class TutorPress_Lite_Main {
 		$deactivate_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $deactivate_url ),
-			esc_html__( 'TutorPress Lite', 'tutorpress-lite-for-tutor-lms' )
+			esc_html__( 'Indigetal Course Workflow Enhancements for Tutor LMS', 'indigetal-course-workflow-enhancements-for-tutor-lms' )
 		);
 
 		$message = sprintf(
-			/* translators: %s: deactivate link for TutorPress Lite */
+			/* translators: %s: deactivate link for this plugin */
 			__(
-				'TutorPress and TutorPress Lite are both active. Deactivate %s to avoid conflicts. The full version of TutorPress includes all Lite features but requires an active license.',
-				'tutorpress-lite-for-tutor-lms'
+				'TutorPress and Indigetal Course Workflow Enhancements for Tutor LMS are both active. Deactivate %s to avoid conflicts. The full version of TutorPress includes all features in this plugin but requires an active license.',
+				'indigetal-course-workflow-enhancements-for-tutor-lms'
 			),
 			$deactivate_link
 		);

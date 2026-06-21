@@ -1,7 +1,7 @@
 {
-  "name": "tutorpress-lite",
-  "version": "1.0.3",
-  "description": "TutorPress Lite for Tutor LMS improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing.",
+  "name": "indigetal-course-workflow-enhancements-for-tutor-lms",
+  "version": "1.0.4",
+  "description": "Indigetal Course Workflow Enhancements for Tutor LMS improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing.",
   "license": "GPL-2.0-or-later",
   "private": true,
   "keywords": [
@@ -10,9 +10,9 @@
     "gutenberg"
   ],
   "scripts": {
-    "clean": "rm -rf tutorpress-lite-build tutorpress-lite.zip",
-    "make-build": "npm run clean && mkdir -p tutorpress-lite-build/tutorpress-lite-for-tutor-lms && rsync -av --exclude-from=.distignore . tutorpress-lite-build/tutorpress-lite-for-tutor-lms/",
-    "package": "npm run make-build && cd tutorpress-lite-build && COPYFILE_DISABLE=1 zip -r ../tutorpress-lite.zip tutorpress-lite-for-tutor-lms -x '*/.DS_Store' -x '*/._*' -x '__MACOSX/*' && cd .. && rm -rf tutorpress-lite-build"
+    "clean": "rm -rf indigetal-course-workflow-enhancements-for-tutor-lms-build indigetal-course-workflow-enhancements-for-tutor-lms.zip",
+    "make-build": "npm run clean && mkdir -p indigetal-course-workflow-enhancements-for-tutor-lms-build/indigetal-course-workflow-enhancements-for-tutor-lms && rsync -av --exclude-from=.distignore . indigetal-course-workflow-enhancements-for-tutor-lms-build/indigetal-course-workflow-enhancements-for-tutor-lms/",
+    "package": "npm run make-build && cd indigetal-course-workflow-enhancements-for-tutor-lms-build && COPYFILE_DISABLE=1 zip -r ../indigetal-course-workflow-enhancements-for-tutor-lms.zip indigetal-course-workflow-enhancements-for-tutor-lms -x '*/.DS_Store' -x '*/._*' -x '__MACOSX/*' && cd .. && rm -rf indigetal-course-workflow-enhancements-for-tutor-lms-build"
   },
   "engines": {
     "node": ">=14.0.0"

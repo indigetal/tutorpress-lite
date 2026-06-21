@@ -37,11 +37,11 @@ class TutorPress_Lite_Sidebar_Tabs {
 		?>
 		<div class="tutorpress-sidebar-tabs">
 			<div class="tutor-sidebar-close-mobile">
-				<button type="button" class="tutor-hide-course-single-sidebar tutor-iconic-btn" aria-label="<?php esc_attr_e( 'Close sidebar', 'tutorpress-lite-for-tutor-lms' ); ?>">×</button>
+				<button type="button" class="tutor-hide-course-single-sidebar tutor-iconic-btn" aria-label="<?php esc_attr_e( 'Close sidebar', 'indigetal-course-workflow-enhancements-for-tutor-lms' ); ?>">×</button>
 			</div>
 			<ul class="tutorpress-tabs">
-				<li class="tutorpress-tab active" data-tab="course-content"><?php esc_html_e( 'Course Content', 'tutorpress-lite-for-tutor-lms' ); ?></li>
-				<li class="tutorpress-tab" data-tab="discussion"><?php esc_html_e( 'Discussion', 'tutorpress-lite-for-tutor-lms' ); ?></li>
+				<li class="tutorpress-tab active" data-tab="course-content"><?php esc_html_e( 'Course Content', 'indigetal-course-workflow-enhancements-for-tutor-lms' ); ?></li>
+				<li class="tutorpress-tab" data-tab="discussion"><?php esc_html_e( 'Discussion', 'indigetal-course-workflow-enhancements-for-tutor-lms' ); ?></li>
 			</ul>
 			<div class="tutorpress-tab-content" id="course-content">
 				<?php

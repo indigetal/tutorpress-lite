@@ -49,7 +49,7 @@ memory-bank
 # Build artifacts
 /build
 /dist
-/tutorpress-lite-build
+/indigetal-course-workflow-enhancements-for-tutor-lms-build
 *.zip
 *.tar.gz
 *.tgz

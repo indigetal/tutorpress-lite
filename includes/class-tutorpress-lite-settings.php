@@ -40,8 +40,8 @@ class TutorPress_Lite_Settings {
 	public static function add_settings_page() {
 		add_submenu_page(
 			'tutor',
-			__( 'TutorPress Lite for Tutor LMS', 'tutorpress-lite-for-tutor-lms' ),
-			__( 'TutorPress Lite', 'tutorpress-lite-for-tutor-lms' ),
+			__( 'Indigetal Course Workflow Enhancements for Tutor LMS', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
+			__( 'Course Workflow', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			'manage_options',
 			'tutorpress-settings',
 			array( __CLASS__, 'render_settings_page' )
@@ -62,14 +62,14 @@ class TutorPress_Lite_Settings {
 
 		add_settings_section(
 			'tutorpress_main_section',
-			__( 'Enable or Disable Features', 'tutorpress-lite-for-tutor-lms' ),
+			__( 'Enable or Disable Features', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			null,
 			'tutorpress-settings'
 		);
 
 		add_settings_section(
 			'tutorpress_dashboard_section',
-			__( 'Editor & Dashboard Redirects', 'tutorpress-lite-for-tutor-lms' ),
+			__( 'Editor & Dashboard Redirects', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			null,
 			'tutorpress-settings'
 		);
@@ -130,24 +130,24 @@ class TutorPress_Lite_Settings {
 	private static function get_defined_settings() {
 		return array(
 			'enable_admin_redirects'          => array(
-				'label'  => __( 'Redirect Backend Course Editing to Gutenberg', 'tutorpress-lite-for-tutor-lms' ),
+				'label'  => __( 'Redirect Backend Course Editing to Gutenberg', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				'helper' => '',
 			),
 			'remove_frontend_builder_button'  => array(
-				'label'  => __( 'Remove Button to Frontend Builder in Course Editor', 'tutorpress-lite-for-tutor-lms' ),
+				'label'  => __( 'Remove Button to Frontend Builder in Course Editor', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				'helper' => '',
 			),
 			'enable_dashboard_redirects'      => array(
-				'label'  => __( 'Redirect Frontend Dashboard Editing to Gutenberg', 'tutorpress-lite-for-tutor-lms' ),
+				'label'  => __( 'Redirect Frontend Dashboard Editing to Gutenberg', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				'helper' => '',
 			),
 			'enable_sidebar_tabs'             => array(
-				'label'  => __( 'Enable Discussion Tab in Lessons', 'tutorpress-lite-for-tutor-lms' ),
-				'helper' => __( 'Adds a Discussion tab to the sidebar of inner course pages and removes the Comments link from the main content area. This feature also adds compatibility with many comment plugins to enhance the social learning experience.', 'tutorpress-lite-for-tutor-lms' ),
+				'label'  => __( 'Enable Discussion Tab in Lessons', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
+				'helper' => __( 'Adds a Discussion tab to the sidebar of inner course pages and removes the Comments link from the main content area. This feature also adds compatibility with many comment plugins to enhance the social learning experience.', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			),
 			'enable_extra_dashboard_links'    => array(
-				'label'  => __( 'Add Media Library & H5P Links to Instructor Dashboard', 'tutorpress-lite-for-tutor-lms' ),
-				'helper' => __( 'Includes links to the Instructor menu in the frontend dashboard. If you do not want instructors to use these backend pages, leave this disabled.', 'tutorpress-lite-for-tutor-lms' ),
+				'label'  => __( 'Add Media Library & H5P Links to Instructor Dashboard', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
+				'helper' => __( 'Includes links to the Instructor menu in the frontend dashboard. If you do not want instructors to use these backend pages, leave this disabled.', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			),
 		);
 	}
@@ -214,7 +214,7 @@ class TutorPress_Lite_Settings {
 		}
 		?>
 		<div class="wrap tutorpress-lite-settings-wrap">
-			<h1><?php echo esc_html__( 'TutorPress Lite for Tutor LMS', 'tutorpress-lite-for-tutor-lms' ); ?></h1>
+			<h1><?php echo esc_html__( 'Indigetal Course Workflow Enhancements for Tutor LMS', 'indigetal-course-workflow-enhancements-for-tutor-lms' ); ?></h1>
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'tutorpress_settings_group' );
@@ -248,29 +248,29 @@ class TutorPress_Lite_Settings {
 				<?php
 				esc_html_e(
 					'About TutorPress',
-					'tutorpress-lite-for-tutor-lms'
+					'indigetal-course-workflow-enhancements-for-tutor-lms'
 				);
 				?>
 			</h2>
 			<p>
 				<?php
 				esc_html_e(
-					'TutorPress Lite shares the same settings and UX improvements as the full version of TutorPress. The full version of TutorPress adds a Gutenberg-native Course Builder in full parity with Tutor LMS\'s frontend course builder, as well as deeper compatibility with the wider WordPress ecosystem.',
-					'tutorpress-lite-for-tutor-lms'
+					'Indigetal Course Workflow Enhancements for Tutor LMS shares the same settings and UX improvements as the full version of TutorPress. The full version of TutorPress adds a Gutenberg-native Course Builder in full parity with Tutor LMS\'s frontend course builder, as well as deeper compatibility with the wider WordPress ecosystem.',
+					'indigetal-course-workflow-enhancements-for-tutor-lms'
 				);
 				?>
 			</p>
 			<p>
 				<?php
 				esc_html_e(
-					'The full version of TutorPress is available from Indigetal WebCraft. After you activate the full version of TutorPress, deactivate TutorPress Lite.',
-					'tutorpress-lite-for-tutor-lms'
+					'The full version of TutorPress is available from Indigetal WebCraft. After you activate the full version of TutorPress, deactivate Indigetal Course Workflow Enhancements for Tutor LMS.',
+					'indigetal-course-workflow-enhancements-for-tutor-lms'
 				);
 				?>
 			</p>
 			<p>
 				<a href="<?php echo esc_url( $product_url ); ?>" target="_blank" rel="noopener noreferrer">
-					<?php esc_html_e( 'Learn more about TutorPress', 'tutorpress-lite-for-tutor-lms' ); ?>
+					<?php esc_html_e( 'Learn more about TutorPress', 'indigetal-course-workflow-enhancements-for-tutor-lms' ); ?>
 				</a>
 			</p>
 		</div>

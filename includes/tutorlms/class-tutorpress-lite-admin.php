@@ -35,8 +35,8 @@ class TutorPress_Lite_Admin {
 	public static function add_lessons_menu_item() {
 		add_submenu_page(
 			'tutor',
-			__( 'Lessons', 'tutorpress-lite-for-tutor-lms' ),
-			__( 'Lessons', 'tutorpress-lite-for-tutor-lms' ),
+			__( 'Lessons', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
+			__( 'Lessons', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 			'edit_tutor_lesson',
 			'edit.php?post_type=lesson'
 		);
@@ -133,7 +133,7 @@ class TutorPress_Lite_Admin {
 			}
 		}
 
-		wp_die( esc_html__( 'Permission Denied', 'tutorpress-lite-for-tutor-lms' ) );
+		wp_die( esc_html__( 'Permission Denied', 'indigetal-course-workflow-enhancements-for-tutor-lms' ) );
 	}
 
 	/**

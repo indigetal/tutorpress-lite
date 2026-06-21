@@ -51,7 +51,7 @@ class TutorPress_Lite_Dependency_Checker {
 		if ( ! self::check_php_requirement() ) {
 			$errors[] = sprintf(
 				/* translators: 1: required PHP version, 2: current PHP version */
-				__( 'TutorPress Lite requires PHP %1$s or higher, but you are running %2$s.', 'tutorpress-lite-for-tutor-lms' ),
+				__( 'Indigetal Course Workflow Enhancements for Tutor LMS requires PHP %1$s or higher, but you are running %2$s.', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				self::MINIMUM_PHP_VERSION,
 				phpversion()
 			);
@@ -60,7 +60,7 @@ class TutorPress_Lite_Dependency_Checker {
 		if ( ! self::check_wordpress_requirement() ) {
 			$errors[] = sprintf(
 				/* translators: 1: required WordPress version, 2: current WordPress version */
-				__( 'TutorPress Lite requires WordPress %1$s or higher, but you are running %2$s.', 'tutorpress-lite-for-tutor-lms' ),
+				__( 'Indigetal Course Workflow Enhancements for Tutor LMS requires WordPress %1$s or higher, but you are running %2$s.', 'indigetal-course-workflow-enhancements-for-tutor-lms' ),
 				self::MINIMUM_WP_VERSION,
 				get_bloginfo( 'version' )
 			);
@@ -87,7 +87,7 @@ class TutorPress_Lite_Dependency_Checker {
 				'admin_notices',
 				function () {
 					self::show_admin_notice(
-						__( 'Tutor LMS is required for TutorPress Lite to function.', 'tutorpress-lite-for-tutor-lms' )
+						__( 'Tutor LMS is required for Indigetal Course Workflow Enhancements for Tutor LMS to function.', 'indigetal-course-workflow-enhancements-for-tutor-lms' )
 					);
 				}
 			);

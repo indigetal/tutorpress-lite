@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall TutorPress Lite for Tutor LMS.
+ * Uninstall Indigetal Course Workflow Enhancements for Tutor LMS.
  *
  * Removes Lite-specific options only. Shared TutorPress settings are preserved
  * so sites can upgrade to full TutorPress without reconfiguring toggles.
