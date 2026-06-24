@@ -1,4 +1,6 @@
 === Indigetal Course Workflow Enhancements for Tutor LMS ===
+(Internal development readme — not shipped in release zips. The WordPress.org plugin directory readme is wordpress-org/trunk/readme.txt.)
+
 Contributors: indigetal
 Tags: tutor lms, lms, gutenberg, courses
 Requires at least: 6.0
@@ -72,10 +74,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. This plug
 
 == Screenshots ==
 
-1. Course Workflow settings page under Tutor LMS (five toggles)
-2. Lessons submenu in the Tutor LMS admin menu
-3. Lesson sidebar with Course Content and Discussion tabs
-4. Tutor courses list with backend redirects enabled (Gutenberg post editor targets)
+1. Course Workflow under Tutor LMS in wp-admin — entry point for the five TutorPress settings toggles
+2. Media Library and H5P links added to the frontend instructor dashboard menu
+3. Lesson Discussion tab in the lesson sidebar (standard WordPress comment patterns)
 
 == Changelog ==
 

@@ -59,6 +59,12 @@ docs
 *.md
 references/
 
+# WordPress.org SVN release checkout (local only)
+wordpress-org/
+
+# Dev readme (WordPress.org readme lives in wordpress-org/trunk/readme.txt)
+readme.txt
+
 # Debug and temporary files
 *.log
 debug.log
