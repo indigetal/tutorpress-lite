@@ -3,7 +3,7 @@
  * Plugin Name:       Indigetal Course Workflow Enhancements for Tutor LMS
  * Plugin URI:        https://wordpress.org/plugins/indigetal-course-workflow-enhancements-for-tutor-lms/
  * Description:       Improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing—without the premium Course Builder.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Requires Plugins:  tutor

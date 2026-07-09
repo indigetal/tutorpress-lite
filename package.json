@@ -1,6 +1,6 @@
 {
   "name": "indigetal-course-workflow-enhancements-for-tutor-lms",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Indigetal Course Workflow Enhancements for Tutor LMS improves Tutor LMS with shared TutorPress settings, Gutenberg-friendly redirects, lesson discussion tabs, and co-instructor editing.",
   "license": "GPL-2.0-or-later",
   "private": true,

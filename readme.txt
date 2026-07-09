@@ -7,7 +7,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
 Requires Plugins: tutor
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,10 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. This plug
 
 == Changelog ==
 
+= 1.0.5 =
+* Tutor LMS 4.0 compatibility for dashboard Gutenberg redirects and lesson Discussion tab
+* Support modern, kids, and legacy learning modes while preserving Tutor LMS <4.0 behavior
+
 = 1.0.4 =
 * Renamed plugin to Indigetal Course Workflow Enhancements for Tutor LMS for WordPress.org naming compliance
 * Text domain updated to `indigetal-course-workflow-enhancements-for-tutor-lms`
@@ -103,6 +107,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. This plug
 * Assignment CPT admin/REST support for co-instructors
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+Tutor LMS 4.0 compatibility for dashboard redirects and lesson Discussion tabs.
 
 = 1.0.4 =
 Renamed for WordPress.org compliance. Settings and upgrade path to full TutorPress are unchanged.
