@@ -7,7 +7,7 @@ Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
 Requires Plugins: tutor
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,11 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. This plug
 
 == Changelog ==
 
+= 1.0.6 =
+* Co-instructor editing: Lesson and Assignment edit and delete access now follows the parent Course's instructors; authoring an item no longer grants access on its own.
+* Course Bundles: only administrators and the Bundle's author can edit or delete a Bundle.
+* Instructors no longer hold the edit-others and delete-others Assignment capabilities; existing sites have them removed once after updating.
+
 = 1.0.5 =
 * Tutor LMS 4.0 compatibility for dashboard Gutenberg redirects and lesson Discussion tab
 * Support modern, kids, and legacy learning modes while preserving Tutor LMS <4.0 behavior
@@ -107,6 +112,9 @@ Yes, when co-instructors are assigned on a shared course in Tutor LMS. This plug
 * Assignment CPT admin/REST support for co-instructors
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+Tightens co-instructor permissions for Lessons, Assignments, and Course Bundles, and removes instructors' edit-others and delete-others Assignment capabilities.
 
 = 1.0.5 =
 Tutor LMS 4.0 compatibility for dashboard redirects and lesson Discussion tabs.
