@@ -112,25 +112,25 @@ class TutorPress_Lite_Admin {
 		);
 		$current_user = get_current_user_id();
 
-		if ( ! in_array( $post->post_type, $tutor_post_types, true ) || (int) $post->post_author === $current_user ) {
+		if ( ! in_array( $post->post_type, $tutor_post_types, true ) ) {
 			return;
 		}
 
-		if ( in_array( $post->post_type, array( tutor()->lesson_post_type, tutor()->assignment_post_type ), true ) ) {
-			$course_id = get_post_meta( $post_id, '_tutor_course_id_for_lesson', true );
-			if ( ! $course_id && function_exists( 'tutor_utils' ) ) {
-				$course_id = tutor_utils()->get_course_id_by( 'lesson', $post_id );
-			}
-
-			if ( $course_id && function_exists( 'tutor_utils' ) ) {
-				if ( tutor_utils()->can_user_edit_course( $current_user, $course_id ) ) {
-					return;
-				}
-			}
-		} elseif ( $post->post_type === tutor()->course_post_type ) {
-			if ( function_exists( 'tutor_utils' ) && tutor_utils()->can_user_edit_course( $current_user, $post_id ) ) {
+		$child_types = array( tutor()->lesson_post_type, tutor()->assignment_post_type );
+		if ( in_array( $post->post_type, $child_types, true ) ) {
+			if ( ( new TutorPress_Lite_Permissions() )->can_user_edit_course_content( $post_id, $current_user ) ) {
 				return;
 			}
+
+			wp_die( esc_html__( 'Permission Denied', 'indigetal-course-workflow-enhancements-for-tutor-lms' ) );
+		}
+
+		if ( (int) $post->post_author === $current_user ) {
+			return;
+		}
+
+		if ( function_exists( 'tutor_utils' ) && tutor_utils()->can_user_edit_course( $current_user, $post_id ) ) {
+			return;
 		}
 
 		wp_die( esc_html__( 'Permission Denied', 'indigetal-course-workflow-enhancements-for-tutor-lms' ) );
