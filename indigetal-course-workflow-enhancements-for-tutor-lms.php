@@ -45,12 +45,6 @@ if ( ! defined( 'TUTORPRESS_FULL_PRODUCT_URL' ) ) {
 function tutorpress_lite_activate() {
 	flush_rewrite_rules();
 	update_option( 'tutorpress_lite_version', TUTORPRESS_LITE_VERSION );
-
-	require_once TUTORPRESS_LITE_PATH . 'includes/tutorlms/class-tutorpress-lite-capability-fixes.php';
-	if ( function_exists( 'tutor' ) ) {
-		TutorPress_Lite_Capability_Fixes::grant_missing_capabilities();
-		update_option( 'tutorpress_lite_capability_version', TUTORPRESS_LITE_VERSION );
-	}
 }
 
 /**
@@ -75,18 +69,20 @@ TutorPress_Lite_Main::instance(
 require_once TUTORPRESS_LITE_PATH . 'includes/tutorlms/class-tutorpress-lite-capability-fixes.php';
 
 /**
- * Capability migration: runs once per Lite version (activation + upgrades).
+ * Capability migration: runs once per capability-schema version.
  *
  * WordPress does not fire register_activation_hook on plugin updates.
+ * The schema value is independent of the plugin version, so version bumps do not re-run the routine.
  */
 add_action(
 	'init',
 	function () {
-		$cap_version = get_option( 'tutorpress_lite_capability_version', '0' );
-		if ( version_compare( $cap_version, TUTORPRESS_LITE_VERSION, '<' ) ) {
+		$cap_schema_version = '1.0.6';
+		$cap_version        = get_option( 'tutorpress_lite_capability_version', '0' );
+		if ( version_compare( $cap_version, $cap_schema_version, '<' ) ) {
 			if ( function_exists( 'tutor' ) && class_exists( 'TutorPress_Lite_Capability_Fixes' ) ) {
 				TutorPress_Lite_Capability_Fixes::grant_missing_capabilities();
-				update_option( 'tutorpress_lite_capability_version', TUTORPRESS_LITE_VERSION );
+				update_option( 'tutorpress_lite_capability_version', $cap_schema_version );
 			}
 		}
 	},
