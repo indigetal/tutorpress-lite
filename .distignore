@@ -48,8 +48,8 @@ memory-bank
 
 # Build artifacts
 /build
-/dist
 /indigetal-course-workflow-enhancements-for-tutor-lms-build
+/indigetal-course-workflow-enhancements-for-tutor-lms-package
 *.zip
 *.tar.gz
 *.tgz
