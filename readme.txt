@@ -4,7 +4,7 @@
 Contributors: indigetal
 Tags: tutor lms, lms, gutenberg, courses
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: tutor
 Stable tag: 1.0.6
